@@ -13,6 +13,7 @@ export type UserType = {
 
 type UserStore = {
   user: UserType | null;
+  hydrated: boolean;
   setUser: (user: UserType | null) => void;
   logout: () => void;
 };
@@ -21,6 +22,7 @@ export const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
       user: null,
+      hydrated: false,
 
       setUser: (user) => {
         set({ user }); // persist automatically saves to localStorage
@@ -35,6 +37,9 @@ export const useUserStore = create<UserStore>()(
 
     {
       name: "user-storage", // localStorage key
+      onRehydrateStorage: () => (state) => {
+        if (state) state.hydrated = true;
+      },
       partialize: (state) => ({ user: state.user }), // only store user
     }
   )

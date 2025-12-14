@@ -1,21 +1,34 @@
+import UserMenu from "@/components/shared/user-menu";
 import { Button } from "@/components/ui/button";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, Navigate } from "react-router-dom";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function DashboardLayout() {
-    const navigate = useNavigate();
-    const buttonText = [
-    {"text": "INCOME", "link": "/income"},
-    {"text": "EXPENSES", "link": "/expense"},
-    {"text": "REPORTS", "link": "/report"},
-    {"text": "EMAIL", "link": "/email"},
-    {"text": "LOGOUT", "link": "/logout"},
-  ]
+  const navigate = useNavigate();
+  const { user, hydrated} = useUserStore();
+
+  if (!hydrated) {
+    return null;   
+  }
+
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+
+  const buttonText = [
+    { text: "INCOME", link: "/income" },
+    { text: "EXPENSES", link: "/expense" },
+    { text: "REPORTS", link: "/report" },
+    { text: "EMAIL", link: "/email" },
+    { text: "LOGOUT", link: "/logout" },
+  ];
 
   return (
-  <>
+    <>
   <div className="flex justify-center items-center">
         <Link to="/"><img src="/logo-text.png" alt="header" className="h-40"/></Link>
         </div>
+        <UserMenu/>
         <section className="flex justify-center my-4">
         <div className="grid lg:grid-cols-3 lg:grid-rows-1 gap-3">
         <div className="px-5 py-2">

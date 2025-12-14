@@ -1,17 +1,13 @@
 type sectionHeadingProps = {
     heading: string,
-    paragraph: string
 }
-export default function SectionHeading({ heading, paragraph } : sectionHeadingProps ) {
+export default function SectionHeading({ heading} : sectionHeadingProps ) {
     return(
         <>
-        <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        <div className="bg-primary py-2 w-full text-center border-l-0 border-t-0 border-b-2 border-r-2 border-black">
+        <h2 className="text-white">
           {heading}
         </h2>
-        <p className="mt-2 text-muted-foreground">
-          {paragraph}
-        </p>
       </div>
         </>
     )
