@@ -1,4 +1,4 @@
-import MainHeading from "@/components/reusable/main-heading";
+import MainHeading from "@/components/shared/main-heading";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
