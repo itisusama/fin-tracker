@@ -1,0 +1,1 @@
+This is the finance management project again build in react. It is open source
