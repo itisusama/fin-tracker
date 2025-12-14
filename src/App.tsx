@@ -12,6 +12,7 @@ import Logout from './pages/dashboard/Logout';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ const App = () => {
   return (
     <div>
       <Router>
+        <Toaster />
         <Routes>
           <Route path="/" element={<Landing />} />
           {/* AUTH ROUTES */}
