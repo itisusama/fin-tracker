@@ -40,7 +40,7 @@ export default function DashboardLayout() {
             ))
           }
         </div>
-        <div className="col-span-2 bg-[#f8d454] px-5 py-2">
+        <div className="col-span-2 bg-[#f8d454] px-5 py-2 rounded-lg">
           <Outlet />
         </div>
        </div>
