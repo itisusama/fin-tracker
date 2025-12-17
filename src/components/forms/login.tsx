@@ -30,16 +30,18 @@ export default function LoginForm() {
     },
   });
 
-  async function onSubmit(values: LoginSchema) {
+async function onSubmit(values: LoginSchema) {
+  try {
+    setLoading(true);
     const success = await loginUser(values);
     if (success) {
       form.reset();
-      setLoading(false);
       navigate("/income");
-    } else {
-        setLoading(true);
     }
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">

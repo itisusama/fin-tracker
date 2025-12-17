@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// AUTH SCHEMAS
 export const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
@@ -38,8 +39,20 @@ export const newPasswordSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
+// INCOME SCHEMA
+export const incomeSchema = z.object({
+  amount: z.number().positive("Amount must be greater than 0"),
+  description: z .string() .max(255, "Description is too long").optional().or(z.literal("")),
+  date: z.string().min(1, "Date is required"),
+});
+
+
+// AUTH SCHEMA TYPES
 export type LoginSchema = z.infer<typeof loginSchema>;
 export type NewPasswordSchema = z.infer<typeof newPasswordSchema>;
 export type ForgetSchema = z.infer<typeof forgetSchema>;
 export type RegisterSchema = z.infer<typeof registerSchema>;
 export type OtpSchema = z.infer<typeof otpSchema>;
+
+// INCOME SCHEMA TYPE
+export type IncomeSchema = z.infer<typeof incomeSchema>;
